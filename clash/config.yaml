@@ -77,14 +77,6 @@ geox-url:
   mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
   asn: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
 
-# 时间同步
-ntp:
-  enable: true
-  write-to-system: true
-  server: ntp1.aliyun.com
-  port: 123
-  interval: 30
-
 # 入站
 tun:
   enable: false
@@ -116,11 +108,10 @@ experimental:
   quic-go-disable-gso: true  
 
 # 面板设置
-external-controller: 127.0.0.1:9090
-secret: "Wans"
-external-ui: "./ui"
 external-ui-name: zashboard
-external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+external-ui: ui
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+secret: "Wans"
 
 # 代理组锚点 hidden: true 是为了隐藏地区分组，有需要显示出来的佬友可以删除
 BaseUT: &BaseUT { type: url-test, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: true, include-all: true }
