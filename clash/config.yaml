@@ -166,7 +166,7 @@ proxy-groups:
 
   # ===================== AI大模型 =====================
   - { name: Claude,     <<: *SelectSL, icon: https://fastly.jsdelivr.net/gh/lobehub/lobe-icons@master/packages/static-png/light/claude-color.png }
-  - { name: Gemini,     <<: *SelectSL, icon: https://fastly.jsdelivr.net/gh/lobehub/lobe-icons@master/packages/static-png/light/gemini-color.png }
+  - { name: Gemini,     <<: *SelectTW, icon: https://fastly.jsdelivr.net/gh/lobehub/lobe-icons@master/packages/static-png/light/gemini-color.png }
   - { name: OpenAI,     <<: *SelectUS, icon: https://fastly.jsdelivr.net/gh/lobehub/lobe-icons@master/packages/static-png/light/openai.png }
 
   # ===================== 媒体 & 娱乐 =====================
