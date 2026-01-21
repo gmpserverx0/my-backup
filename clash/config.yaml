@@ -1,9 +1,9 @@
 # 地址: https://github.com/wanswu/my-backup
 # 作者: Wans
-# 更新: 2026-01-16-10:14:23
-# 描述: 在proxy-providers加入您的机场订阅链接（代理提供者）
+# 更新: 2026-01-21 12:23:07
+# 描述: 在proxy-providers加入您的机场订阅链接 (代理提供者)
 
-# 订阅锚点，排除了一些节点，例如 包含剩余，官网，到期，也可以在exclude-filter添加你需要排除的节点
+# 订阅锚点，排除了一些节点，例如 包含剩余, 官网, 到期, 也可以在exclude-filter添加你需要排除的节点
 Providers: &Providers { exclude-filter: "Expire|到期|剩余|Traffic|网址|官网|过期", type: http, interval: 86400, health-check: { enable: true, url: https://www.google.com/generate_204, interval: 300 } }
 # 官方配置文档: https://wiki.metacubex.one/config/proxy-providers/
 proxy-providers:
@@ -112,6 +112,7 @@ external-ui-name: zashboard
 external-ui: ui
 external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
 secret: "Wans"
+external-controller: '127.0.0.1:9090'
 
 # 代理组锚点 hidden: true 是为了隐藏地区分组，有需要显示出来的佬友可以删除
 BaseUT: &BaseUT { type: url-test, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: true, include-all: true }
@@ -285,6 +286,7 @@ rule-anchor:
 rule-providers:
   # 域名规则集
   Advertising:    { <<: *BehaviorDN, url: https://fastly.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblockmihomolite.mrs }
+  spotify-ads:    { <<: *BehaviorDN, url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/spotify-ads.mrs }
   China:          { <<: *BehaviorDN, url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs }
   Claude:         { <<: *BehaviorDN, url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/anthropic.mrs }
   Disney:         { <<: *BehaviorDN, url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/disney.mrs }
@@ -319,6 +321,8 @@ rules:
   - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((RULE-SET,ChinaIP)))),REJECT  # 阻止海外 QUIC 流量泄漏
 
   # 域名规则集-按照优先级顺序排列
+  - RULE-SET,Advertising,REJECT
+  - RULE-SET,spotify-ads,REJECT
   - RULE-SET,Github,Github
   - RULE-SET,OpenAI,OpenAI
   - RULE-SET,Gemini,Gemini
@@ -327,7 +331,6 @@ rules:
   - RULE-SET,Twitter,Twitter
   - RULE-SET,Telegram,Telegram
   - RULE-SET,Spotify,Spotify
-  - RULE-SET,Advertising,REJECT
   - RULE-SET,YouTube,YouTube
   - RULE-SET,TikTok,TikTok
   - RULE-SET,OneDrive,OneDrive
