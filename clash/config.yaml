@@ -115,10 +115,10 @@ secret: "Wans"
 external-controller: '127.0.0.1:9090'
 
 # 代理组锚点 hidden: true 是为了隐藏地区分组，有需要显示出来的佬友可以删除
-BaseUT: &BaseUT { type: url-test, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: true, include-all: true }
-BaseFB: &BaseFB { type: fallback, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: true, include-all: true }
-BaseCR: &BaseCR { type: load-balance, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: true, strategy: round-robin, include-all: true }
-BaseCH: &BaseCH { type: load-balance, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: true, strategy: consistent-hashing, include-all: true }
+BaseUT: &BaseUT { type: url-test, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: false, include-all: true }
+BaseFB: &BaseFB { type: fallback, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: false, include-all: true }
+BaseCR: &BaseCR { type: load-balance, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: false, strategy: round-robin, include-all: true }
+BaseCH: &BaseCH { type: load-balance, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: false, strategy: consistent-hashing, include-all: true }
 
 # 代理组锚点
 SelectUL: &SelectUL { type: select, proxies: [ 香港, 台湾, 澳门, 狮城, 日本, 韩国, 美国, 英国, 德国, 法国, 印度, 越南, 印尼, 泰国, 澳洲, 巴西, 荷兰, 土耳其, 阿根廷, 冷门节点, DIRECT, REJECT ], include-all: true }
